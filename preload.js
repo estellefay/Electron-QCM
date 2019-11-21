@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     email: () => document.getElementById('email').value,
   };
 
+
   /**
    * OBTENIR PDF
    */
@@ -33,11 +34,10 @@ window.addEventListener('DOMContentLoaded', () => {
       fs.writeFile(filepath, fileContent, (err) => {
           if (err) throw err;
       }); 
-
       doc = new PDFDocument;    
       doc.pipe(fs.createWriteStream('output.pdf'));   
       doc.font('fonts/OpenSansCondensed-LightItalic.ttf')
-      doc.text('ton score est : ' + score + ' Some text with an embedded font!', 100, 100);
+      doc.text(' ton score est : ' + score + '  Bravo' + , 100, 100);
       doc.save()
       doc.end()
 
@@ -81,16 +81,16 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
         // Si le bone element est check
       
-          if (document.getElementById(questions[k].reponse).selected) {
+          if (document.getElementById(questions[k].reponse).checked) {
             score++
+            console.log(score)
             alert("correct")
-            // fs.writeFile('result.html', "1", 'utf8', function(err) {
-            //   if(err) {
-            //     return console.log(err);
-            //   }
-            // });
-            fs.createWriteStream('result.html', "1");  
-            return score
+            fs.writeFileSync('result.json', "1", 'utf8', function(err) {
+              if(err) {
+                return console.log(err);
+              }
+            });
+           return score
           }
 
       })
