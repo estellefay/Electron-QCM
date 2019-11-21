@@ -5,15 +5,35 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="asset/css/style.css">
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Page Home</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div class="global">
+      <div class="title">
+        <h1>Questionnaire de connaissance</h1>
+        <img src="asset/img/quiz.jpg" alt="">
+      </div>
+      <div class="info">
+        <div class="form-example">
+            <label for="name">Nom </label>
+            <input type="text" name="name" id="name" required>
+          </div>
+          <div class="form-example">
+            <label for="firstname">Prénom </label>
+            <input type="text" name="firstname" id="firstname" required>
+          </div>
+          <div class="form-example">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+          </div>
+        <div class="button" id="start">Démarrer</div>
+      </div>
+    </div>
+    <!-- <h1 id="title-quiz"></h1> -->
 
     <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
   </body>
+  <script src="./renderer.js"></script>
 </html>
+

@@ -1,0 +1,30 @@
+
+
+/* INDEX */
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  } 
+  
+.global {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+  }
+
+  img {
+      width: 50%;
+      height: 30%;
+  }
+
+  .title, .info {
+      width: 50%;
+      text-align: center;
+  }
