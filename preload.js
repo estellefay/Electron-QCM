@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
       doc = new PDFDocument;    
       doc.pipe(fs.createWriteStream('output.pdf'));   
       doc.font('fonts/OpenSansCondensed-LightItalic.ttf')
-      doc.text('ton socre est : ' + score + ' Some text with an embedded font!', 100, 100);
+      doc.text('ton score est : ' + score + ' Some text with an embedded font!', 100, 100);
       doc.save()
       doc.end()
 
