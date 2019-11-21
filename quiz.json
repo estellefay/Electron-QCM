@@ -1,52 +1,67 @@
 {
     "title": "Questionaire",
     "nbQuestion" : 5,
-    "question": {
+    "listQuestion": {
         
         "1" : {
-            "question": "brown",
-            "1": "yellow",
-            "2": "137lbs",
-            "3": "137lbs",
-            "4": "137lbs",
-            "5": "137lbs",
-            "reponse": 5
+            "question": "question 1 ",
+            "listRep" : {
+                "Rep1": "yellow",
+                "Rep2": "137lbs",
+                "Rep3": "137lbs",
+                "Rep4": "137lbs",
+                "Rep5": "137lbs"
+            },
+            "reponse": 3,
+            "numero": 1
         },
         "2" : {
-            "question": "brown",
-            "1": "yellow",
-            "2": "137lbs",
-            "3": "137lbs",
-            "4": "137lbs",
-            "5": "137lbs",
-            "reponse": 5
+            "question": "question 2 ",
+            "listRep" : {
+                "Rep1": "jaune",
+                "Rep2": "rouge",
+                "Rep3": "vert",
+                "Rep4": "bleu",
+                "Rep5": "violet"
+            },
+            "reponse": 3,
+            "numero": 2
         },
         "3" : {
-            "question": "brown",
-            "1": "yellow",
-            "2": "137lbs",
-            "3": "137lbs",
-            "4": "137lbs",
-            "5": "137lbs",
-            "reponse": 5
+            "question": "question 3 ",
+            "listRep" : {
+                "Rep1": "chapeau",
+                "Rep2": "pantlon",
+                "Rep3": "robe",
+                "Rep4": "jupe",
+                "Rep5": "chemise"
+            },
+            "reponse": 3,
+            "numero": 3
         },
         "4" : {
-            "question": "brown",
-            "1": "yellow",
-            "2": "137lbs",
-            "3": "137lbs",
-            "4": "137lbs",
-            "5": "137lbs",
-            "reponse": 5
+            "question": "question 4 ",
+            "listRep" : {
+                "Rep1": "yellow",
+                "Rep2": "test",
+                "Rep3": "testtttt",
+                "Rep4": "testtttt",
+                "Rep5": "teetetete"
+            },
+            "reponse": 3,
+            "numero": 4
         },
         "5" : {
-            "question": "brown",
-            "1": "yellow",
-            "2": "137lbs",
-            "3": "137lbs",
-            "4": "137lbs",
-            "5": "137lbs",
-            "reponse": 5
+            "question": "question 5",
+            "listRep" : {
+                "Rep1": "yellow",
+                "Rep2": "137lbs",
+                "Rep3": "137lbs",
+                "Rep4": "137lbs",
+                "Rep5": "137lbs"
+            },
+            "reponse": 3,
+            "numero": 5
         }
     }
 }

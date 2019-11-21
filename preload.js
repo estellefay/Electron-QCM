@@ -7,78 +7,109 @@ var hyperstream = require('hyperstream')
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
 window.addEventListener('DOMContentLoaded', () => {
-
   // data
   params = {
     name: () => document.getElementById('name').value,
     firstname: () => document.getElementById('firstname').value,
     email: () => document.getElementById('email').value,
   };
-  // Lire le fichier quiz
+
+  /**
+   * Lire le fichier quiz
+  */
   fs.readFile('quiz.json', (err, data) => {
     if (err) throw err;
     let datas = JSON.parse(data);
+    let questions = datas.listQuestion
     let nbQuestion = datas.nbQuestion
-    
-  
-    //saddDataJson()
 
-    //AddText("title-quiz", datas.title)
+    // parcourir le fichier JSON  
+    Object.keys(questions).forEach(function(k){  
+      var content = getContent(questions[k])
+      console.log(content)
+      fs.createWriteStream('questions.html')
+      fs.writeFile('questions'+ questions[k].numero +'.html', content, function (err) {
+        if (err) throw err;
+      });    
+    });
 
+  /**
+   * Ecouter le bouton Démarrer
+   */
 
+  document.getElementById("start") && document.getElementById("start").addEventListener('click', evt => {
+    //window.location.href = "winner.html"
+    // if (params.name() || params.firstname() || params.email() === "undefined") {
+    //     window.location.href = "index.html"
+    // } else {
+    // Remove result data
+      result = {}
+    // Add DATA
+      var identite = {
+        "name" :params.name(),
+        "prenom" :params.firstname(),
+        "email" :params.email()
+      }
 
+      // Save data
+      result = JSON.stringify(identite);
+      // redirection first question
+      window.location.href = "questions1.html"
+    });
 
-    /**
-     * Ecouter le bouton Démarrer
-     */
-    document.getElementById("start").addEventListener('click', evt => {
-      //window.location.href = "winner.html"
-      // if (params.name() || params.firstname() || params.email() === "undefined") {
-      //     window.location.href = "index.html"     
-      // } else {
-      // Remove result data
-        result = {}
-        var identite = { 
-          "name" :params.name(),
-          "prenom" :params.firstname(),
-          "email" :params.email()
-        }
-        // Save data 
-        result = JSON.stringify(identite);
-        console.log(result);
-        // Create question
-        console.log(datas)
-        for (let index = 0; index < nbQuestion; index++) {
-          console.log("toto")
-          // créer toutes les pages html
-
-        }
-        var html = createHTML({
-          title: 'example',
-          script: 'example.js',
-          scriptAsync: true,
-          css: 'example.css',
-          lang: 'en',
-          dir: 'rtl',
-          head: '<meta name="description" content="example">',
-          body: '<p>example</p>',
-        })
-
-        var hs = hyperstream({
-          'body': fs.createReadStream('some.html')
-        })
-
-        var stream = fromString(html)
-        stream.pipe(hs).pipe(process.stdout)
+  })
       //   var opened = window.open("");
       // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
     // }
-    });
-  }) 
+});
+
+    function getContent(data) {
+      //console.log(data.listRep)
+      var pageSuivante = data.numero + 1
+      var listRep = data.listRep
+      var rep = []
+
+      Object.keys(listRep).forEach(function(k){  
+        rep.push(listRep[k])
+      });
+      console.log(rep)
+
+      var responses = "";
+      for (let index = 0; index < data.nbrReponse; index++) {
+          responses.push
+      }
+      var result = '<h1>'+ data.question + '</h1>' +  Array.keys(rep).forEach(function(k){ '<h1>' + listRep[k] + '</h1>' }) +
+      '<a href="questions'+ pageSuivante +'.html">question suivante</a>' 
+      + pageSuivante
+      
+      return result
+
+    }
 
 
-    
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Ajouter le text dans les éléments HTML
   // function AddText(id, contenue) {
@@ -89,12 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
   //   document.body.appendChild(selection);
   // }
 
- 
+
   // const replaceText = (selector, text) => {
   //   const element = document.getElementById(selector)
   //   if (element) element.innerText = text
-  // } 
-  
+  // }
+
   // for (const type of ['chrome', 'node', 'electron']) {
   //   replaceText(`${type}-version`, process.versions[type])
   // }
