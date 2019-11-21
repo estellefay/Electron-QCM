@@ -3,8 +3,9 @@ let params = {}
 let result = {}
 var createHTML = require('create-html')
 var hyperstream = require('hyperstream')
+//var jsPDF = require('jspdf')
 var score = 0;
-var identite
+var identite;
 
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
@@ -15,6 +16,21 @@ window.addEventListener('DOMContentLoaded', () => {
     firstname: () => document.getElementById('firstname').value,
     email: () => document.getElementById('email').value,
   };
+
+  /**
+   * OBTENIR PDF
+   */
+  document.getElementById("getResult") && document.getElementById("getResult").addEventListener('click', evt => {
+    console.log("voici le result")
+    console.log(score)
+    // Si le bone element est check
+    // var doc = new jsPDF()
+    // doc.text('Hello world!', 10, 10)
+    // doc.save('test.pdf')
+
+  
+
+  })
 
   /**
    * Lire le fichier quiz
@@ -35,18 +51,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
       fs.writeFile('questions'+ questions[k].numero +'.html', 
 
-      "<h1>"+questions[k].question+"</h1>" + '<div><input type="radio"  value="'+ 1+'" name="'+ listRep.Rep1+ '" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
-      + '</div><div><input type="radio"  value="'+ 1 + '"name="'+ listRep.Rep2+ '" id="'+ 2+'">'+ listRep.Rep2 
-      + '</div><div><input type="radio"  value="'+ listRep.Rep3+ '"name="'+ listRep.Rep3+ '" id="'+ 3+'">'+ listRep.Rep3 
-      + '</div><div><input type="radio"  value="'+ listRep.Rep4+ '"name="'+ listRep.Rep4+ '" id="'+ 4+'">'+ listRep.Rep4 
-      + '</div><div><input type="radio"  value="'+ listRep.Rep5+ '"name="'+ listRep.Rep5+ '" id="'+ 5+'">'+ listRep.Rep5 +
+      "<h1>"+questions[k].question+"</h1>" + '<div><input type="radio"  value="'+ 1+'" name="quest" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep2  + '"name="quest" id="'+ 2+'">'+ listRep.Rep2 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep3+ '"name="quest" id="'+ 3+'">'+ listRep.Rep3 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep4+ '"name="quest" id="'+ 4+'">'+ listRep.Rep4 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep5+ '"name="quest" id="'+ 5+'">'+ listRep.Rep5 +
       '</div><a class="'+ questions[k].numero +'" href="questions'+ pageSuivante +'.html">question suivante</a>' , function (err) {
         if (err) throw err;
       // event listner sur le num de la question 
       document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
         console.log("toto")
         // Si le bone element est check
+          if (document.getElementById(questions[k].reponse).checked) {
+            score++
+            alert("correct")
+            return score
+          }
 
+      })
+
+      document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
+        console.log("toto")
+        // Si le bone element est check
        
         console.log(score)
           if (document.getElementById(questions[k].reponse).selected) {
@@ -54,7 +80,11 @@ window.addEventListener('DOMContentLoaded', () => {
             alert("correct")
             return score
           }
+
       })
+
+
+
         // quand il est cliquer je vérifie si se qui clique 
 
         // affichage dynamique des reponses
