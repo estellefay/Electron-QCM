@@ -7,24 +7,24 @@
             "question": "1+1",
             "listRep" : {
                 "Rep1": "9",
-                "Rep2": "2",
-                "Rep3": "3",
+                "Rep2": "6",
+                "Rep3": "2",
                 "Rep4": "4",
                 "Rep5": "5"
             },
-            "reponse": 2,
+            "reponse": 3,
             "numero": 1
         },
         "2" : {
             "question": "2 + 2",
             "listRep" : {
-                "Rep1": "4",
+                "Rep1": "8",
                 "Rep2": "2",
-                "Rep3": "5",
+                "Rep3": "4",
                 "Rep4": "6",
                 "Rep5": "9"
             },
-            "reponse": 1,
+            "reponse": 3,
             "numero": 2
         },
         "3" : {

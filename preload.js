@@ -35,25 +35,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
       fs.writeFile('questions'+ questions[k].numero +'.html', 
 
-      "<h1>"+questions[k].question+"</h1>" + '<input type="radio"  value="'+ 1+'" name="" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
-      + '<input type="radio"  value="'+ 1 + '"name="" id="'+ 2+'">'+ listRep.Rep2 
-      + '<input type="radio"  value="'+ listRep.Rep3+ '"name="" id="'+ 3+'">'+ listRep.Rep3 
-      + '<input type="radio"  value="'+ listRep.Rep4+ '"name="" id="'+ 4+'">'+ listRep.Rep4 
-      + '<input type="radio"  value="'+ listRep.Rep5+ '"name="" id="'+ 5+'">'+ listRep.Rep5 +
-      '<a class="'+ questions[k].numero +'" href="questions'+ pageSuivante +'.html">question suivante</a>' , function (err) {
+      "<h1>"+questions[k].question+"</h1>" + '<div><input type="radio"  value="'+ 1+'" name="'+ listRep.Rep1+ '" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
+      + '</div><div><input type="radio"  value="'+ 1 + '"name="'+ listRep.Rep2+ '" id="'+ 2+'">'+ listRep.Rep2 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep3+ '"name="'+ listRep.Rep3+ '" id="'+ 3+'">'+ listRep.Rep3 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep4+ '"name="'+ listRep.Rep4+ '" id="'+ 4+'">'+ listRep.Rep4 
+      + '</div><div><input type="radio"  value="'+ listRep.Rep5+ '"name="'+ listRep.Rep5+ '" id="'+ 5+'">'+ listRep.Rep5 +
+      '</div><a class="'+ questions[k].numero +'" href="questions'+ pageSuivante +'.html">question suivante</a>' , function (err) {
         if (err) throw err;
       // event listner sur le num de la question 
       document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
         console.log("toto")
-        if (document.getElementById(questions[k].reponse).checked) {
-          score++
-          alert("correct")
-        }
-        console.log(score)
+        // Si le bone element est check
 
+       
+        console.log(score)
+          if (document.getElementById(questions[k].reponse).selected) {
+            score++
+            alert("correct")
+            return score
+          }
       })
         // quand il est cliquer je vérifie si se qui clique 
 
+        // affichage dynamique des reponses
         // Object.keys(listRep).forEach(function(c){  
         //  console.log(listRep[c])
         //    var x = document.createElement("input");
