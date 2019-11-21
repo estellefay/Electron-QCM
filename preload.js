@@ -38,6 +38,8 @@ window.addEventListener('DOMContentLoaded', () => {
       doc.pipe(fs.createWriteStream('output.pdf'));   
       doc.font('fonts/OpenSansCondensed-LightItalic.ttf')
       doc.text('Some text with an embedded font!', 100, 100);
+      doc.save()
+      doc.end()
 
     // Si le bone element est check
     // var doc = new jsPDF()
