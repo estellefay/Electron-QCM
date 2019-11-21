@@ -1,8 +1,10 @@
 const fs = require('fs')
 let params = {}
-var result = [];
+let result = {}
 var createHTML = require('create-html')
 var hyperstream = require('hyperstream')
+var score = 0;
+var identite
 
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
@@ -23,13 +25,47 @@ window.addEventListener('DOMContentLoaded', () => {
     let questions = datas.listQuestion
     let nbQuestion = datas.nbQuestion
 
+
+
     // parcourir le fichier JSON  
     Object.keys(questions).forEach(function(k){  
-      var content = getContent(questions[k])
-      console.log(content)
-      fs.createWriteStream('questions.html')
-      fs.writeFile('questions'+ questions[k].numero +'.html', content, function (err) {
+      // Créer le html 
+      var pageSuivante = questions[k].numero + 1
+      let listRep = questions[k].listRep
+
+      fs.writeFile('questions'+ questions[k].numero +'.html', 
+
+      "<h1>"+questions[k].question+"</h1>" + '<input type="radio"  value="'+ 1+'" name="" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
+      + '<input type="radio"  value="'+ 1 + '"name="" id="'+ 2+'">'+ listRep.Rep2 
+      + '<input type="radio"  value="'+ listRep.Rep3+ '"name="" id="'+ 3+'">'+ listRep.Rep3 
+      + '<input type="radio"  value="'+ listRep.Rep4+ '"name="" id="'+ 4+'">'+ listRep.Rep4 
+      + '<input type="radio"  value="'+ listRep.Rep5+ '"name="" id="'+ 5+'">'+ listRep.Rep5 +
+      '<a class="'+ questions[k].numero +'" href="questions'+ pageSuivante +'.html">question suivante</a>' , function (err) {
         if (err) throw err;
+      // event listner sur le num de la question 
+      document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
+        console.log("toto")
+        if (document.getElementById(questions[k].reponse).checked) {
+          score++
+          alert("correct")
+        }
+        console.log(score)
+
+      })
+        // quand il est cliquer je vérifie si se qui clique 
+
+        // Object.keys(listRep).forEach(function(c){  
+        //  console.log(listRep[c])
+        //    var x = document.createElement("input");
+        //    x.type = "radio";
+        //    x.value = listRep[c]   
+        //    x.innerHTML = listRep[c]          
+        //    document.body.appendChild(x); 
+
+        // });
+        //getContent(questions[k])
+        //console.log(questions[k])
+
       });    
     });
 
@@ -43,9 +79,9 @@ window.addEventListener('DOMContentLoaded', () => {
     //     window.location.href = "index.html"
     // } else {
     // Remove result data
-      result = {}
+    result = {}
     // Add DATA
-      var identite = {
+      identite = {
         "name" :params.name(),
         "prenom" :params.firstname(),
         "email" :params.email()
@@ -72,17 +108,20 @@ window.addEventListener('DOMContentLoaded', () => {
       Object.keys(listRep).forEach(function(k){  
         rep.push(listRep[k])
       });
-      console.log(rep)
+      console.log(rep) 
 
-      var responses = "";
-      for (let index = 0; index < data.nbrReponse; index++) {
-          responses.push
-      }
-      var result = '<h1>'+ data.question + '</h1>' +  Array.keys(rep).forEach(function(k){ '<h1>' + listRep[k] + '</h1>' }) +
-      '<a href="questions'+ pageSuivante +'.html">question suivante</a>' 
-      + pageSuivante
+      // var responses = "";
+      // for (let index = 0; index < data.nbrReponse; index++) {
+      //     responses.push
+      // }
+      // var result = '<h1>'+ data.question + '</h1>' +  '<input type="radio" name="" id="">' +
+      // '<a href="questions'+ pageSuivante +'.html">question suivante</a>' 
+      // + pageSuivante
       
-      return result
+      // return result
+      var test = document.createElement("h1");   // Create a <button> element
+      test.innerHTML = data.question;                   // Insert text
+      document.body.appendChild(test);               // Append <button> to <body>
 
     }
 
