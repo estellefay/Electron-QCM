@@ -3,7 +3,8 @@ let params = {}
 let result = {}
 var createHTML = require('create-html')
 var hyperstream = require('hyperstream')
-var PDFDocument = require('pdfkit');
+const PDFDocument = require('pdfkit');
+var remote = require('electron').remote.getGlobal("score")
 
 //var jsPDF = require('jspdf')
 var score = 0;
@@ -35,6 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       doc = new PDFDocument;    
       doc.pipe(fs.createWriteStream('output.pdf'));   
+      doc.font('fonts/OpenSansCondensed-LightItalic.ttf')
       doc.text('Some text with an embedded font!', 100, 100);
 
     // Si le bone element est check
@@ -73,25 +75,19 @@ window.addEventListener('DOMContentLoaded', () => {
       '</div><a class="'+ questions[k].numero +'" href="questions'+ pageSuivante +'.html">question suivante</a>' , function (err) {
         if (err) throw err;
       // event listner sur le num de la question 
-      document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
-        console.log("toto")
-        // Si le bone element est check
-          if (document.getElementById(questions[k].reponse).checked) {
-            score++
-            alert("correct")
-            return score
-          }
-
-      })
 
       document.getElementById(questions[k].numero) && document.getElementById(questions[k].numero).addEventListener('click', evt => {
-        console.log("toto")
         // Si le bone element est check
-       
-        console.log(score)
+      
           if (document.getElementById(questions[k].reponse).selected) {
             score++
             alert("correct")
+            // fs.writeFile('result.html', "1", 'utf8', function(err) {
+            //   if(err) {
+            //     return console.log(err);
+            //   }
+            // });
+            fs.createWriteStream('result.html', "1");  
             return score
           }
 
