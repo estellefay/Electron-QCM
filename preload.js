@@ -3,6 +3,8 @@ let params = {}
 let result = {}
 var createHTML = require('create-html')
 var hyperstream = require('hyperstream')
+var PDFDocument = require('pdfkit');
+
 //var jsPDF = require('jspdf')
 var score = 0;
 var identite;
@@ -23,6 +25,18 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById("getResult") && document.getElementById("getResult").addEventListener('click', evt => {
     console.log("voici le result")
     console.log(score)
+    
+      var fileContent = "Hello World!";
+      var filepath = "test.pdf";
+
+      fs.writeFile(filepath, fileContent, (err) => {
+          if (err) throw err;
+      }); 
+
+      doc = new PDFDocument;    
+      doc.pipe(fs.createWriteStream('output.pdf'));   
+      doc.text('Some text with an embedded font!', 100, 100);
+
     // Si le bone element est check
     // var doc = new jsPDF()
     // doc.text('Hello world!', 10, 10)

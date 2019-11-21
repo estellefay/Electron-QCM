@@ -23,6 +23,7 @@
     "create-html": "^4.1.0",
     "hyperstream": "^1.2.2",
     "jsonfile": "^5.0.0",
-    "jspdf": "^1.5.3"
+    "jspdf": "^1.5.3",
+    "pdfkit": "^0.10.0"
   }
 }
