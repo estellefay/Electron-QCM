@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       fs.writeFile('questions'+ questions[k].numero +'.html', 
 
-      "<h1>"+questions[k].question+"</h1>" + '<div><input type="radio"  value="'+ 1+'" name="quest" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
+      "<h1>"+questions[k].question+"</h1> <p>question : "+  questions[k].numero +"/"+datas.nbQuestion+"</p>" + '<div><input type="radio"  value="'+ 1+'" name="quest" id="'+ listRep.Rep1+'">'+ listRep.Rep1 
       + '</div><div><input type="radio"  value="'+ listRep.Rep2  + '"name="quest" id="'+ 2+'">'+ listRep.Rep2 
       + '</div><div><input type="radio"  value="'+ listRep.Rep3+ '"name="quest" id="'+ 3+'">'+ listRep.Rep3 
       + '</div><div><input type="radio"  value="'+ listRep.Rep4+ '"name="quest" id="'+ 4+'">'+ listRep.Rep4 
